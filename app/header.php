@@ -34,8 +34,15 @@
         }
     </style>
 
+    <!-- jQuery library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+
 </head>
 <body>
     <!-- container -->
@@ -43,7 +50,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-togle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toogle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -51,7 +58,7 @@
                     </button>
                     <a class="navbar-brand" href="#">Multivendor</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" id="navbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Inventario<span class="sr-only">(current)</span></a>
                         </li>
@@ -62,8 +69,10 @@
                         </li>
                         <li><a href="#">Ventas</a>
                         </li>
+                        <li role="separator" class="divider"></li>
                     </ul>
-                    <ul class="navbar-right nav navbar-nav">
+
+                    <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Salir</a></li>
                     </ul>
                 </div>
