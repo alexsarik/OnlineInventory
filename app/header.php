@@ -45,6 +45,7 @@
 
 </head>
 <body>
+
     <!-- container -->
     <div class="container">
         <nav class="navbar navbar-default">
@@ -60,9 +61,10 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Inventario<span class="sr-only">(current)</span></a>
+                    <!-- TENGO QUE VER COMO HACER PARA QUE LA CLASS ACTIVE DEPENDA DE LA PAGINA EN LA QUE ESTOY -->
+                        <li><a href="index.php">Inventario<span class="sr-only">(current)</span></a>
                         </li>
-                        <li><a href="#">Clientes</a>
+                        <li><a href="list_customers.php">Clientes</a>
                         </li>
                         <li>
                             <a href="#">Proveedores</a>

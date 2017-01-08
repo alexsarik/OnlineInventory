@@ -1,8 +1,6 @@
 <?php
 class Product{
-
-	private $table_name = "products";
-
+ 
 	//propiedades del objeto
 	public $id;
 	public $serial;

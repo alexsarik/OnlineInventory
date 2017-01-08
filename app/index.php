@@ -1,4 +1,5 @@
 <?php
+//will crash if not set to true and has errors
 ini_set('display_errors',1);
 // page given in URL parameter, default page is one
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -23,7 +24,7 @@ $num = count($results);
 //Header
 $page_title = "Inventario";
 include_once "header.php";
-
+//button add product
 echo "<div class='right-button-margin'>";
     echo "<a href='create_product.php' class='btn btn-success pull-right'>Añadir Producto</a>";
 echo "</div>";
