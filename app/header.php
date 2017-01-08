@@ -73,7 +73,11 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Salir</a></li>
+                        <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#"> <?php echo isset($username) ? $username : 'Usuario'; ?><span style="margin-left: 5px;" class="caret"></span></a></li>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Perfil</a></li>
+                            <li><a href="#">Salir</a></li>
+                        </ul>
                     </ul>
                 </div>
             </div>

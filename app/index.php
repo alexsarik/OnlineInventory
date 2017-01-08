@@ -11,14 +11,8 @@ $from_record_num = ($records_per_page * $page) - $records_per_page;
 // include database and object files
 include_once 'config/database2.php';
 include_once 'objects/product.php';
-//include_once 'objects/category.php';
- 
-// instantiate database and objects
-//$database = new Database();
-//$db = $database->getConnection();
- 
+
 $product = new Product($db);
-//$category = new Category($db);
  
 // query products
 $db = new DB;
@@ -31,7 +25,7 @@ $page_title = "Inventario";
 include_once "header.php";
 
 echo "<div class='right-button-margin'>";
-    echo "<a href='create_product.php' class='btn btn-default pull-right'>Añadir Producto</a>";
+    echo "<a href='create_product.php' class='btn btn-success pull-right'>Añadir Producto</a>";
 echo "</div>";
 
 // display the products if there are any
@@ -85,6 +79,16 @@ if($num>0){
  
     echo "</table>";
     echo "</div>";
+    // the page where this paging is used
+    $page_url = "index.php?";
+     
+    // count all products in the database to calculate total pages
+    $total_rows = $product->countAll();
+     
+    // paging buttons here
+    include_once 'paging.php';
+
+    
     // paging buttons will be here
 }
  
