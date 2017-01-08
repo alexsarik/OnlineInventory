@@ -14,7 +14,7 @@ include_once "header.php";
 
 // contents will be here
 echo "<div class='right-button-margin'>";
-echo "<a href='index.php' class='btn btn-default pull-right'>Ver Productos</a>";
+echo "<a href='index.php' class='btn btn-primary pull-right'>Ver Productos</a>";
 echo "</div>";
  
 ?>
@@ -25,7 +25,7 @@ echo "</div>";
  
         <tr>
             <td>Serial</td>
-            <td><input type='text' width='30' name='serial' class='form-control' /></td>
+            <td><input type='text' width='30' name='serial' class='form-control' autofocus/></td>
         </tr>
  
  
@@ -62,7 +62,7 @@ echo "</div>";
         <tr>
             <td></td>
             <td>
-                <button type="submit" class="btn btn-primary">Añadir</button>
+                <button type="submit" class="btn btn-success">Añadir</button>
             </td>
         </tr>
  

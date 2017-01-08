@@ -62,10 +62,13 @@ class Product{
 		if($result){
 			$row = $db->result()[0];
 
-			$this->name = $row['name'];
-			$this->price = $row['price'];
+			$this->serial = $row['serial'];
+			$this->purchasePrice = $row['purchase_price'];
+			$this->salePrice = $row['sale_price'];
 			$this->description = $row['description'];
-			$this->category_id = $row['category_id'];
+			$this->quantity = $row['quantity'];
+			$this->model = $row['model'];
+			$this->location = $row['location'];
 		}
 
 		return $row;
@@ -78,17 +81,30 @@ class Product{
 		FROM
 		products
 		ORDER BY
-		description ASC
+		id ASC
 		LIMIT
 		{$from_record_num}, {$records_per_page}";
 
 		$result = $db->run($query);
+
 		$rows = array();
 
 		if($result){
 			$rows = $db->result();
 		}
+
 		return $rows;
 	}
-}
-?>
+
+	public function countAll(){
+ 		$db = new DB;
+
+    	$query = "SELECT id FROM products";
+ 		
+ 		$db->run($query);
+ 	
+ 		$num = $db->count();
+ 
+   		return $num;
+	}
+}?>
