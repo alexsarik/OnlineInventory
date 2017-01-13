@@ -57,8 +57,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Multivendor</a>
+                    <a class="navbar-brand" href="#">Multi Vendor</a>
                 </div>
+                
                 <div class="navbar-collapse collapse" id="navbar">
                     <ul class="nav navbar-nav">
                     <!-- TENGO QUE VER COMO HACER PARA QUE LA CLASS ACTIVE DEPENDA DE LA PAGINA EN LA QUE ESTOY -->

@@ -6,7 +6,7 @@
 $(document).on('click', '.delete-object', function(){
 
 	var id = $(this).attr('delete-id');
-
+	alert(id);
 	if(confirm("Seguro que quieres borrarlo?")){
 		$.post('delete_product.php', {
 			object_id: id
@@ -15,7 +15,24 @@ $(document).on('click', '.delete-object', function(){
 		}).fail(function() {
 			alert('Unable to delete.');
 		});
-	}else{
+	} else{
+		alert("No se pudo borrar");
+	}
+});
+
+$(document).on('click', '.delete-object2', function(){
+
+	var id = $(this).attr('delete-id');
+	alert(id);
+	if(confirm("Seguro que quieres borrarlo?")){
+		$.post('delete_customer.php', {
+			object_id: id
+		}, function(data){
+			location.reload();
+		}).fail(function() {
+			alert('Unable to delete.');
+		});
+	} else{
 		alert("No se pudo borrar");
 	}
 });

@@ -7,26 +7,25 @@ Class Customer{
 	public $contactNum;
 	public $email; 
 	public $city;
-	public $address;
-	public $createdDate;
+	public $address; 
 
 
 	function create(){
 		$db = new DB;
 		//Query para INSERT nuevo Producto
 		$query = "INSERT INTO `multivendor`.`customers`
-		(`name`, `description`, `contact_num`, `email`, `city`, `address`, `created_date`)
+		(`name`, `description`, `contact_num`, `email`, `city`, `address`)
 		VALUES (?,?,?,?,?,?)";
 
-		return $db->run($query, array($this->name,$this->description, $this->contact_num,$this->email,$this->city,$this->address, $this->created_date));
+		return $db->run($query, array($this->name,$this->description, $this->contactNum,$this->email,$this->city,$this->address));
 	}
 
 	function update(){
 		$db = new DB;
 
-		$query = "UPDATE `multivendor`.`customers` SET `name` = ?, `description`= ?, `contact_num`= ?, `email`= ?, `city`= ?, `address`, `created_date` = ? WHERE `id` = ?";
+		$query = "UPDATE `multivendor`.`customers` SET `name` = ?, `description`= ?, `contact_num`= ?, `email`= ?, `city`= ?, `address` = ? WHERE `id` = ?";
 
-		$result = $db->run($query, array($this->name, $this->description, $this->contact_num, $this->email, $this->city, $this->address, $this->created_date, $this->id));
+		$result = $db->run($query, array($this->name, $this->description, $this->contactNum, $this->email, $this->city, $this->address, $this->id));
 
 		return $result;
 	}
@@ -63,8 +62,7 @@ Class Customer{
 			$this->contactNum = $row['contact_num'];
 			$this->email = $row['email'];
 			$this->city = $row['city'];
-			$this->address = $row['address'];
-			$this->createdDate = $row['created_date'];
+			$this->address = $row['address']; 
 		}
 
 		return $row;
