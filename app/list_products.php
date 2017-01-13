@@ -3,20 +3,26 @@
 ini_set('display_errors',1);
 // page given in URL parameter, default page is one
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
- 
+
 // set number of records per page
 $records_per_page = 3;
  
 // calculate for the query LIMIT clause
 $from_record_num = ($records_per_page * $page) - $records_per_page;
+
+
 // include database and object files
 include_once 'config/database2.php';
 include_once 'objects/product.php';
 
-$product = new Product($db);
- 
-// query products
-$db = new DB;
+$product = new Product();
+
+echo $product->countAll();
+/*
+if($product->countAll()<$from_record_num){
+    $_GET['page'] = $page-1;
+} 
+ */
 $results = $product->readAll($from_record_num, $records_per_page);
 
 $num = count($results);
@@ -30,7 +36,7 @@ echo "<div class='right-button-margin'>";
 echo "</div>";
 
 // display the products if there are any
-if($num>0){
+if($num > 0){
     echo "<div style='overflow:hidden;overflow-x:scroll;'>";
     echo "<table class='table table-hover table-responsive table-bordered'>";
         echo "<tr>";
@@ -75,11 +81,9 @@ if($num>0){
  
             echo "</tr>";
         }
-
-       
- 
     echo "</table>";
     echo "</div>";
+    
     // the page where this paging is used
     $page_url = "index.php?";
      

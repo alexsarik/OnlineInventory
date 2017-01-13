@@ -1,0 +1,27 @@
+html {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+}
+
+footer {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.img-logo{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.footer {
+    border: 1px solid transparent;
+    border-color: #e7e7e7;
+    background-color: #f8f8f8;
+
+}
+
+.footer p {
+    color: #777;
+}
