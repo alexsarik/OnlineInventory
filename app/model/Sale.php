@@ -10,7 +10,11 @@ class Sale
 {
     public $id;
     public $user_id;
+    public $user_name;
+
     public $customer_id;
+    public $customer_name;
+
     public $date_created;
 
     public $db;

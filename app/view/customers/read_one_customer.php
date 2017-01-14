@@ -25,7 +25,7 @@
     </tr>
 
     <tr>
-        <td><strong>Descripción</strong></td>
+        <td><strong>Persona de Contacto</strong></td>
         <td style='width:70%;text-align:right;'><?= $customer->description?></td>
     </tr>
 
@@ -35,13 +35,18 @@
     </tr>
 
     <tr>
+        <td><strong>Código Postal</strong></td>
+        <td style='width:70%;text-align:right;'><?= $customer->postal_code?></td>
+    </tr>
+
+    <tr>
         <td><strong>Ciudad</strong></td>
         <td style='width:70%;text-align:right;'><?= $customer->city?></td>
     </tr>
 
     <tr>
         <td><strong>Email</strong></td>
-        <td style='width:70%;text-align:right;'><?= $customer->email?></td>
+        <td style='width:70%;text-align:right;'><a href="mailto:<?= $customer->email?>"><?= $customer->email?></td>
     </tr>
 
     <tr>

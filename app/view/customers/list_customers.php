@@ -24,8 +24,9 @@
         <table class="table table-hover table-responsive table-bordered">
             <thead>
             <th>Nombre</th>
-            <th>Descripción</th>
+            <th>Persona de Contacto</th>
             <th>Dirección</th>
+            <th>Codigo Postal</th>
             <th>Ciudad</th>
             <th>Email</th>
             <th>Num. Contacto</th>
@@ -37,6 +38,7 @@
                     <td><?= $customer->name ?></td>
                     <td><?= $customer->description ?></td>
                     <td><?= $customer->address ?></td>
+                    <td><?= $customer->postal_code ?></td>
                     <td><?= $customer->city ?></td>
                     <td><a href="mailto:<?= $customer->email ?>"><?= $customer->email ?></a></td>
                     <td><a href="tel:<?= $customer->contact_num?>"><?= $customer->contact_num?></a></td>

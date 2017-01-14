@@ -16,6 +16,7 @@ class Customer
     public $email;
     public $city;
     public $address;
+    public $postal_code;
     public $db;
 
     /**
@@ -27,10 +28,10 @@ class Customer
      * @param $email
      * @param $city
      * @param $address
-     * @param $db
+     * @param $postal_code
      */
     public function __construct($id = null, $name = null, $description = null, $contact_num = null,
-                                $email = null, $city = null, $address = null, $db = null)
+                                $email = null, $city = null, $address = null, $postal_code = null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -38,6 +39,7 @@ class Customer
         $this->contact_num = $contact_num;
         $this->email = $email;
         $this->city = $city;
+        $this->postal_code = $postal_code;
         $this->address = $address;
         $this->db = new DB;
     }
@@ -48,10 +50,10 @@ class Customer
         $db = new DB;
         //Query para INSERT nuevo Producto
 
-        $query = "INSERT INTO `multivendor`.`customers`(`name`, `description`, `contact_num`, `email`, `address`, `city`)
+        $query = "INSERT INTO `multivendor`.`customers`(`name`, `description`, `contact_num`, `email`, `address`, `city`, `postal_code`)
 		          VALUES (?,?,?,?,?,?)";
 
-        $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->address, $this->city);
+        $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->address, $this->city, $this->postal_code);
 
         return $db->run($query, $parameters);
     }
@@ -63,10 +65,10 @@ class Customer
         $db = new DB;
 
         $query = "UPDATE `multivendor`.`customers` 
-                  SET `name` = ?, `description`= ?, `contact_num`= ?, `email`= ?, `city`= ?, `address` = ? 
+                  SET `name` = ?, `description`= ?, `contact_num`= ?, `email`= ?, `city`= ?, `address` = ?, `postal_code` = ?
                   WHERE `id` = ?";
 
-        $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->city, $this->address, $this->id);
+        $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->city, $this->address, $this->postal_code, $this->id);
 
         $result = $db->run($query, $parameters);
 
