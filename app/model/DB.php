@@ -10,19 +10,18 @@ class DB{
     private $query;
 
     function __construct() {
-        $this->host = "localhost";
-        /*
-        $this->user = "mrcotcbe_admin";
-        $this->pass = "r000t";
-        $this->dbname = "mrcotcbe_multivendor";
-        */
+        $this->host = DB_HOST;
 
-        $this->user = "root";
-        $this->pass = "";
-        $this->dbname = "multivendor";
+        $this->user = DB_USER;
+        $this->pass = DB_PASS;
+        $this->dbname = DB_NAME;
 
 
-        $this->connection = new PDO("mysql:dbname=".$this->dbname."; host=".$this->host, $this->user, $this->pass, array(PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        $this->connection = new PDO("mysql:dbname=".$this->dbname.
+            "; host=".$this->host,
+            $this->user, $this->pass,
+            array(PDO::ATTR_PERSISTENT => true,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }

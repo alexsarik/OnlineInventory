@@ -58,7 +58,7 @@ class Product
     {
         $db = new DB;
         //Query para INSERT nuevo Producto
-        $query = "INSERT INTO `multivendor`.`products`
+        $query = "INSERT INTO `products`
 		(`serial`, `description`, `model`, `location`, `purchase_price`, `sale_price`, `quantity`)
 		VALUES (?,?,?,?,?,?,?)";
 
@@ -71,7 +71,7 @@ class Product
     {
         $db = new DB;
 
-        $query = "UPDATE `multivendor`.`products` SET `serial` = ?, `description`= ?, `model`= ?, `location`= ?, `purchase_price`= ?, `sale_price`= ?,`quantity`= ? WHERE `id` = ?";
+        $query = "UPDATE `products` SET `serial` = ?, `description`= ?, `model`= ?, `location`= ?, `purchase_price`= ?, `sale_price`= ?,`quantity`= ? WHERE `id` = ?";
 
         $parameters = array($this->serial, $this->description, $this->model, $this->location, $this->purchase_price, $this->sale_price, $this->quantity, $this->id);
 
@@ -84,7 +84,7 @@ class Product
     {
         $db = new DB;
 
-        $query = "DELETE FROM `multivendor`.`products` WHERE `id` = ?";
+        $query = "DELETE FROM `products` WHERE `id` = ?";
 
         $parameters = array($this->id);
 
@@ -122,9 +122,9 @@ class Product
         if ($from_record_num == null) {
             $query = "SELECT *
                         FROM
-                        products
+                        `products`
                         ORDER BY
-                        id ASC";
+                        `id` ASC";
 
 
             if($db->run($query)) {
@@ -141,9 +141,9 @@ class Product
         } else {
             $query = "SELECT *
                         FROM
-                        products
+                        `products`
                         ORDER BY
-                        id ASC
+                        `id` ASC
                         LIMIT
                         {$from_record_num}, {$records_per_page}";
 

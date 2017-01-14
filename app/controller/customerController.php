@@ -23,6 +23,7 @@ class customerController extends Controller
             $customer->city = $city;
             $customer->email = $email;
             $customer->contact_num= $contact_num;
+            $customer->postal_code = $postal_code;
 
             if ($customer->create()) {
                 $render_data['info'] = "Cliente creado.";

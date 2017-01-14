@@ -5,6 +5,8 @@
  * Date: 14/01/2017
  * Time: 13:25
  */
+
+
 ?>
 <section>
     <ol class="breadcrumb">
@@ -30,8 +32,8 @@
             <?php foreach ($sales as $sale) : ?>
                 <tr id='sale<?= $sale->id ?>'>
                     <td><?= $sale->date_created ?></td>
-                    <td><?= $sale->customer_id ?></td>
-                    <td><?= $sale->user_id?></td>
+                    <td><?= $sale->customer_name ?></td>
+                    <td><?= $sale->user_name?></td>
                     <td style='white-space:nowrap'>
                         <a href='index.php?c=sale&a=details&id=<?= $sale->id ?>' class='btn btn-primary left-margin'><span class='glyphicon glyphicon-list'></span> Detalles</a>
                         <a href='index.php?c=sale&a=update&id=<?= $sale->id ?>' class='btn btn-info left-margin'><span class='glyphicon glyphicon-list'></span> Modificar</a>

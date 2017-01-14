@@ -41,7 +41,7 @@ class Customer
         $this->city = $city;
         $this->postal_code = $postal_code;
         $this->address = $address;
-        $this->db = new DB;
+
     }
 
 
@@ -51,7 +51,7 @@ class Customer
         //Query para INSERT nuevo Producto
 
         $query = "INSERT INTO `multivendor`.`customers`(`name`, `description`, `contact_num`, `email`, `address`, `city`, `postal_code`)
-		          VALUES (?,?,?,?,?,?)";
+		          VALUES (?,?,?,?,?,?,?)";
 
         $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->address, $this->city, $this->postal_code);
 
@@ -94,7 +94,7 @@ class Customer
         $db = new DB;
 
         $query = "SELECT *
-                  FROM `multivendor`.`customers`
+                  FROM `customers`
                   WHERE `id` = ?
                   LIMIT 0, 1";
 
@@ -116,8 +116,8 @@ class Customer
 
         $customers = [];
 
-        $query = "SELECT * FROM `multivendor`.`customers`
-		ORDER BY id ASC ";
+        $query = "SELECT * FROM `customers`
+		ORDER BY `id` ASC ";
 
         if ($db->run($query)) {
             $results = $db->result();
@@ -137,7 +137,7 @@ class Customer
         $db = new DB;
 
         $query = "SELECT id 
-                  FROM `multivendor`.`customers`";
+                  FROM `customers`";
 
         $db->run($query);
 

@@ -14,7 +14,7 @@ class productController extends Controller
         $render_data = array();
         $product = new Product();
         if ($this->checkAction("create")) {
-            var_dump($_POST);
+            //var_dump($_POST);
             extract($_POST);
 
             $isSerial = !is_null($_POST['serial']) && $_POST['serial'] != "";
