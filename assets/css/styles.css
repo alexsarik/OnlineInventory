@@ -5,12 +5,14 @@ html {
 
 body {
     margin: 0 0 100px;
+
 }
 
 footer {
     padding-right: 15px;
     padding-left: 15px;
 }
+
 .img-logo{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -24,4 +26,12 @@ footer {
 
 .footer p {
     color: #777;
+}
+
+@media only screen and (max-width: 768px) {
+    /* STYLES HERE for BROWSER WINDOWS with a max-width of 480px.
+       This will work on desktops when the window is narrowed.  */
+    .navbar-header button{
+        display: none;
+    }
 }
