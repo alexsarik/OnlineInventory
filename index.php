@@ -3,18 +3,18 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 session_start();
-include("app2/config.php");
+include("app/config.php");
 function __autoload($class)
 {
-    $is_controller = is_file("app2/controller/$class.php");
-    $is_model = is_file("app2/model/$class.php");
-    $is_lib = is_file("app2/lib/$class.php");
+    $is_controller = is_file("app/controller/$class.php");
+    $is_model = is_file("app/model/$class.php");
+    $is_lib = is_file("app/lib/$class.php");
     if ($is_controller) {
-        include("app2/controller/$class.php");
+        include("app/controller/$class.php");
     } else if ($is_model) {
-        include("app2/model/$class.php");
+        include("app/model/$class.php");
     } else if ($is_lib) {
-        include_once("app2/lib/$class.php");
+        include_once("app/lib/$class.php");
     }
 }
 
