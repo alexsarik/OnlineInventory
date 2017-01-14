@@ -23,13 +23,19 @@
             <td><input type="text" name="name" value="<?= $customer->name ?>" class="form-control"></td>
         </tr>
         <tr>
-            <td>Descripción</td>
+            <td>Persona de Contacto</td>
             <td><input type='text' name='description' value='<?= $customer->description ?>' class='form-control'/></td>
         </tr>
         <tr>
             <td>Dirección</td>
             <td><input type='text' name='address' value='<?= $customer->address ?>' class='form-control'/></td>
         </tr>
+
+        <tr>
+            <td>Código Postal</td>
+            <td><input type='number' name='city' value='<?= $customer->postal_code ?>' class='form-control'/></td>
+        </tr>
+
         <tr>
             <td>Ciudad</td>
             <td><input type='text' name='city' value='<?= $customer->city ?>' class='form-control'/></td>

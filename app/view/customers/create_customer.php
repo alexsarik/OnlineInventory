@@ -24,7 +24,7 @@
 
 
         <tr>
-            <td>Descripción</td>
+            <td>Persona de Contacto</td>
             <td><input type='text' width='150' name='description' class='form-control'> </td>
         </tr>
 
