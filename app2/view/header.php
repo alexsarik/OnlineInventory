@@ -45,7 +45,7 @@
                                 <!-- TENGO QUE VER COMO HACER PARA QUE LA CLASS ACTIVE DEPENDA DE LA PAGINA EN LA QUE ESTOY -->
                                 <li><a href="index.php?c=product&a=list_products">Inventario<span class="sr-only">(current)</span></a>
                                 </li>
-                                <li><a href="index.php?c=customers&a=list_customers">Clientes</a>
+                                <li><a href="index.php?c=customer&a=list_customers">Clientes</a>
                                 </li>
                                 <li>
                                     <a href="#">Proveedores</a>

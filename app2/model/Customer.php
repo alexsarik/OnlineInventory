@@ -12,7 +12,7 @@ class Customer
     public $id;
     public $name;
     public $description;
-    public $contactNum;
+    public $contact_num;
     public $email;
     public $city;
     public $address;
@@ -23,19 +23,19 @@ class Customer
      * @param $id
      * @param $name
      * @param $description
-     * @param $contactNum
+     * @param $contact_num
      * @param $email
      * @param $city
      * @param $address
      * @param $db
      */
-    public function __construct($id = null, $name = null, $description = null, $contactNum = null,
+    public function __construct($id = null, $name = null, $description = null, $contact_num = null,
                                 $email = null, $city = null, $address = null, $db = null)
     {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
-        $this->contactNum = $contactNum;
+        $this->contact_num = $contact_num;
         $this->email = $email;
         $this->city = $city;
         $this->address = $address;
@@ -47,13 +47,16 @@ class Customer
     {
         $db = new DB;
         //Query para INSERT nuevo Producto
-        $query = "INSERT INTO `multivendor`.`customers` (`name`, `description`, `contact_num`, `email`, `city`, `address`)
+
+        $query = "INSERT INTO `multivendor`.`customers`(`name`, `description`, `contact_num`, `email`, `address`, `city`)
 		          VALUES (?,?,?,?,?,?)";
 
-        $parameters = array($this->name, $this->description, $this->contactNum, $this->email, $this->city, $this->address);
+        $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->address, $this->city);
 
         return $db->run($query, $parameters);
     }
+
+
 
     function update()
     {
@@ -63,7 +66,7 @@ class Customer
                   SET `name` = ?, `description`= ?, `contact_num`= ?, `email`= ?, `city`= ?, `address` = ? 
                   WHERE `id` = ?";
 
-        $parameters = array($this->name, $this->description, $this->contactNum, $this->email, $this->city, $this->address, $this->id);
+        $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->city, $this->address, $this->id);
 
         $result = $db->run($query, $parameters);
 
@@ -84,7 +87,7 @@ class Customer
         return $result;
     }
 
-    function readOne()
+    public static function readOne($id)
     {
         $db = new DB;
 
@@ -93,42 +96,38 @@ class Customer
                   WHERE `id` = ?
                   LIMIT 0, 1";
 
-        $parameters = array($this->id);
+        $parameters = array($id);
+        $db->run($query, $parameters);
 
-        $result = $db->run($query, $parameters);
-        $row = null;
+        $customer = new Customer();
 
-        if ($result) {
-            $row = $db->result()[0];
-
-            $this->name = $row['name'];
-            $this->description = $row['description'];
-            $this->contactNum = $row['contact_num'];
-            $this->email = $row['email'];
-            $this->city = $row['city'];
-            $this->address = $row['address'];
+        foreach ($db->result()[0] as $property => $value) {
+            $customer->$property = $value;
         }
 
-        return $row;
+        return $customer;
     }
 
-    function readAll($from_record_num, $records_per_page)
+    public static function readAll($from_record_num = null, $records_per_page = null)
     {
         $db = new DB;
 
+        $customers = [];
+
         $query = "SELECT * FROM `multivendor`.`customers`
-		ORDER BY id ASC
-		LIMIT {$from_record_num}, {$records_per_page}";
+		ORDER BY id ASC ";
 
-        $result = $db->run($query);
-
-        $rows = array();
-
-        if ($result) {
-            $rows = $db->result();
+        if ($db->run($query)) {
+            $results = $db->result();
+            foreach ($results as $result) {
+                $customer = new Customer();
+                foreach ($result as $property => $value) {
+                    $customer->$property = $value;
+                }
+                $customers[] = $customer;
+            }
         }
-
-        return $rows;
+        return $customers;
     }
 
     public function countAll()
