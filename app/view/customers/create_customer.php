@@ -39,6 +39,11 @@
         </tr>
 
         <tr>
+            <td>Código Postal</td>
+            <td><input type='number' width='150' name='postal_code' class='form-control'> </td>
+        </tr>
+
+        <tr>
             <td>Email</td>
             <td><input type='email' name='email' class='form-control' /></td>
         </tr>
