@@ -7,7 +7,7 @@ class Controller
         if (!empty($render_data)) {
             extract($render_data);
         }
-        include("app2/view/header.php");
+        include("app/view/header.php");
 
         if (isset($info)) {
             $this->info($info);
@@ -18,8 +18,8 @@ class Controller
         if (isset($error)) {
             $this->error($error);
         }
-        include("app2/view/$view.php");
-        include("app2/view/footer.php");
+        include("app/view/$view.php");
+        include("app/view/footer.php");
     }
 
     public function auth()
@@ -71,8 +71,8 @@ class Controller
     {
         extract($render_data);
 
-        include("app2/view/header.php");
-        include("app2/view/error.php");
-        include("app2/view/footer.php");
+        include("app/view/header.php");
+        include("app/view/error.php");
+        include("app/view/footer.php");
     }
 }
