@@ -32,17 +32,18 @@ class Controller
 
     protected function info($msg)
     {
-        echo "<p id='message' class='info' />$msg</p>";
+        echo "<div id='message' class='alert alert-success'>$msg</div>";
+
     }
 
     protected function alert($msg)
     {
-        echo "<p id='message' class='alert' />$msg</p>";
+        echo "<div id='message' class='alert alert-warning'>$msg</div>";
     }
 
     protected function error($msg)
     {
-        echo "<p id='message' class='error' />$msg</p>";
+        echo "<div id='message' class='alert alert-danger'>$msg</div>";
     }
 
     public function errorPage($render_data)
