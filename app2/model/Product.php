@@ -93,7 +93,7 @@ class Product
         return $result;
     }
 
-    public static function getByID($id)
+    public static function readOne($id)
     {
         $db = new DB;
 
@@ -115,42 +115,10 @@ class Product
         return $product;
     }
 
-    public static function readOne()
-    {
-        $db = new DB;
-        $product = new Product();
-
-        $query = "SELECT *
-		FROM
-		products
-		WHERE
-		id = ?
-		LIMIT
-		0, 1";
-
-        $parameters = array($product->id);
-
-        $result = $db->run($query, $parameters);
-        $row = null;
-
-        if ($result) {
-            $row = $db->result()[0];
-
-            $product->serial = $row['serial'];
-            $product->purchase_price = $row['purchase_price'];
-            $product->sale_price = $row['sale_price'];
-            $product->description = $row['description'];
-            $product->quantity = $row['quantity'];
-            $product->model = $row['model'];
-            $product->location = $row['location'];
-        }
-
-        return $row;
-    }
-
     public static function readAll($from_record_num = null, $records_per_page = null)
     {
         $db = new DB;
+        $products = [];
         if ($from_record_num == null) {
             $query = "SELECT *
                         FROM
@@ -158,8 +126,18 @@ class Product
                         ORDER BY
                         id ASC";
 
-            $result = $db->run($query);
 
+            if($db->run($query)) {
+                $results = $db->result();
+                foreach($results as $result){
+                    $product = new Product();
+                    foreach ($result as $property=>$value){
+                        $product->$property = $value;
+
+                    }
+                    $products[] = $product;
+                }
+            }
         } else {
             $query = "SELECT *
                         FROM
@@ -169,15 +147,11 @@ class Product
                         LIMIT
                         {$from_record_num}, {$records_per_page}";
 
-            $result = $db->run($query);
-        }
-        $rows = array();
+            $results = $db->run($query);
 
-        if ($result) {
-            $rows = $db->result();
         }
 
-        return $rows;
+        return $products;
     }
 
     public static function countAll()
