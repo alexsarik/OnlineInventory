@@ -30,6 +30,27 @@ class Controller
         return false;
     }
 
+    public function checkAction($action) {
+        return isset($_POST["action"]) && $_POST["action"] == $action;
+    }
+
+    public function checkForm($needles) {
+        $input = $_POST;
+        foreach ($needles as $needle) {
+            $found = false;
+            foreach ($input as $key => $value) {
+                if ($needle == $key) {
+                    $found = (!is_null($value) && $value != "");
+                    break;
+                }
+            }
+            if (!$found) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     protected function info($msg)
     {
         echo "<div id='message' class='alert alert-success'>$msg</div>";
