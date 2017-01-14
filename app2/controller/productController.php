@@ -6,8 +6,6 @@
  * Date: 12/01/2017
  * Time: 22:18
  */
-
-
 class productController extends Controller
 {
     #needs serial, description, model, location, purchasePrice, salePrice, quantity
@@ -15,8 +13,8 @@ class productController extends Controller
     {
         $render_data = array();
         $product = new Product();
-        if (isset($_POST['action']) && $_POST['action'] == "create") {
-            var_dump($_POST);
+        if ($this->checkAction("create")) {
+
             extract($_POST);
 
             $isSerial = !is_null($_POST['serial']) && $_POST['serial'] != "";
@@ -38,10 +36,11 @@ class productController extends Controller
 
                 if ($product->create()) {
                     $render_data['info'] = "Producto creado.";
+                    header('Refresh: 1; url="index.php?c=product&a=list_products');
                 } else {
                     $render_data['error'] = "No se ha podido crear el Producto.";
                 }
-            }else{
+            } else {
                 $render_data['error'] = "Rellene todos los campos.";
             }
         }
@@ -55,7 +54,7 @@ class productController extends Controller
         $render_data = array();
         $product = Product::readOne($_GET['id']);
 
-        if (isset($_POST['action']) && $_POST['action'] == "update") {
+        if ($this->checkAction("update")) {
             extract($_POST);
 
             $product->id = $_GET['id'];
@@ -74,15 +73,24 @@ class productController extends Controller
             }
 
         }
-        $render_data['product'] =  $product;
+        $render_data['product'] = $product;
         $render_data['title'] = "Actualizar Producto";
         $this->render('products/update_product', $render_data);
     }
 
     public function delete()
     {
-
-        #$this->render('update_product', $render_data);
+        $id = $_GET['id'];
+        extract($_GET);
+        if ($id != 0 && !is_null($id) && isset($id)) {
+            $product = Product::readOne($id);
+            if ($product->delete()) {
+                $render_data['info'] = "Producto eliminado.";
+            } else {
+                $render_data['error'] = "No se ha podido eliminar el Producto.";
+            }
+        }
+        $this->list_products($render_data);
     }
 
     public function details()
@@ -96,12 +104,16 @@ class productController extends Controller
         $this->render('products/read_one_product', $render_data);
     }
 
-    public function list_products()
+    public function list_products($data = null)
     {
+
         $render_data['title'] = "Productos";
         $render_data['products'] = Product::readAll();
         //var_dump($render_data);
+        if (isset($data)) {
+            $render_data = array_merge($render_data, $data);
 
+        }
         $this->render('products/list_products', $render_data);
 
     }
