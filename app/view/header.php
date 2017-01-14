@@ -50,7 +50,7 @@
                                 <li>
                                     <a href="#">Proveedores</a>
                                 </li>
-                                <li><a href="index.php">Ventas</a>
+                                <li><a href="index.php?c=sale&a=list_sales">Ventas</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                             </ul>
