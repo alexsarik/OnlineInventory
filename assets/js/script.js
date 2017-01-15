@@ -5,7 +5,7 @@
 $(document).ready(function () {
 
 
-    $("#form-customer-info").on('changed.bs.select','select', function (e) {
+    $("#form-customer-info").on('changed.bs.select', 'select', function (e) {
 
         var section1 = $('.section-1');
         var section2 = $('.section-2')
@@ -25,33 +25,39 @@ $(document).ready(function () {
     });
 
 
-
     $("#products_table").on('changed.bs.select', 'select', function (e) {
 
         var parent = $(this).parents(".tr_clone");
-        var selected_value = $(e.currentTarget).val();
+        var selected_value = $(this).val();
         var products = injection["products"];
-        console.log(e.currentTarget);
         for (var j = 0; j < products.length; j++) {
-            if (products[j].serial == selected_value) {
-                parent.find(".product_description").text(products[j].description);
-                parent.find(".product_model").text(products[j].model);
-                parent.find(".product_location").text(products[j].location);
-                parent.find(".product_purchase_price").text(products[j].purchase_price);
-                parent.find(".product_sale_price").text(products[j].sale_price);
-                parent.find(".product_quantity").text(products[j].quantity);
+            if (products[j].id == selected_value) {
+                parent.find(".description").text(products[j].description);
+                parent.find(".model").text(products[j].model);
+                parent.find(".location").text(products[j].location);
+                parent.find(".purchase_price").text(products[j].purchase_price);
+                parent.find(".sale_price").text(products[j].sale_price);
+                parent.find(".quantity input").val(1);
+                parent.find(".quantity input").attr("name");
+                parent.find(".quantity input").attr("name","products["+ products[j].id+"]");
+                parent.find(".quantity input").attr("max",products[j].quantity);
             }
         }
     });
 
     $(".add-row").click(function () {
 
-        var tr = $(".tr_clone:last-child").clone().appendTo("#products_table tbody");
+
+
+        var tr = $(".tr_clone:last-child").clone();
+        tr.appendTo("#products_table tbody");
+
+        var tr_quantity = tr.find(".quantity input");
+
         $('#products_table tbody tr:last').find('.bootstrap-select').replaceWith(function () {
             return $('select', this);
         });
         $('.selectpicker').selectpicker('refresh');
-
     });
 
     $("#products_table").on('click', '#remove', function () {

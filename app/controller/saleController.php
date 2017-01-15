@@ -15,31 +15,50 @@ class saleController extends Controller
         $render_data = array();
 
         $sale = new Sale();
+        $sale_item = new SaleItem();
         $customer = new Customer();
         $product = new Product();
 
         $customers = Customer::readAll();
         $products = Product::readAll();
+        $sale_order_items = [];
 
-        $injection = ["customers"=>$customers, "products"=>$products];
+        $injection = ["customers" => $customers, "products" => $products];
 
         $render_data['customers'] = $customers;
         $render_data['products'] = $products;
+
         $render_data['injection'] = $injection;
 
         if ($this->checkAction("create")) {
-            var_dump($_POST);
+            //var_dump($_POST);
             extract($_POST);
-
 
             $sale->user_id = $this->currentUser()->id;
             $sale->customer_id = $customer_id;
             $sale->date_created = date('Y-m-d');
 
+            $result = $sale->create();
+            if ($result !== false) {
 
-            if ($sale->create()) {
+                foreach ($products as $product_id => $quantity) {
+                    $sale_item->sale_order_id = $result;
+                    $sale_item->product_id = $product_id;
+                    $sale_item->quantity = $quantity;
+                    $sale_order_items[] = $sale_item;
+                    //crea cada item que se ha escogido en la venta
+                    $sale_item->create();
+                    //actualizar el producto en la tabla products restando a la cantidad actual la cantidad de venta
+                    $product = Product::readOne($product_id);
+                    $product->quantity = $product->quantity - $quantity;
+                    $product->update();
+
+                }
+                $render_data['sale_order_items'] = $sale_order_items;
+
+
                 $render_data['info'] = "Venta creada.";
-                header('Refresh: 1; url="index.php?c=sale&a=list_sales');
+                //  header('Refresh: 1; url="index.php?c=sale&a=list_sales');
             } else {
                 $render_data['error'] = "No se ha podido crear la Venta.";
             }
