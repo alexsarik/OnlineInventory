@@ -23,6 +23,7 @@
     <div class="table-default" style="overflow-x: scroll">
         <table class="table table-hover table-responsive table-bordered">
             <thead>
+            <th>Nº Oferta</th>
             <th>Fecha</th>
             <th>Cliente</th>
             <th>Vendedor</th>
@@ -31,6 +32,7 @@
             <tbody>
             <?php foreach ($sales as $sale) : ?>
                 <tr id='sale<?= $sale->id ?>'>
+                    <td><?= $sale->sale_number ?></td>
                     <td><?= $sale->date_created ?></td>
                     <td><?= $sale->customer_name ?></td>
                     <td><?= $sale->user_name?></td>

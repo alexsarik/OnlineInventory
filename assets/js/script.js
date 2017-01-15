@@ -4,6 +4,21 @@
 
 $(document).ready(function () {
 
+    $("#products_table").on("update", function (e) {
+        var subtotal = $("#sale_subtotal").text();
+        var total = $("#sale_total");
+        console.log(subtotal, total);
+
+    });
+
+    $("#products_table").on("change", "input", function (e) {
+
+        var tr = $(this).parents(".tr_clone");
+        var unit_price = tr.find(".sale_price input").val();
+        var quantity = tr.find(".quantity input").val();
+        var total = tr.find(".total").text(unit_price * quantity);
+        console.log(total);
+    });
 
     $("#form-customer-info").on('changed.bs.select', 'select', function (e) {
 
@@ -33,20 +48,19 @@ $(document).ready(function () {
         for (var j = 0; j < products.length; j++) {
             if (products[j].id == selected_value) {
                 parent.find(".description").text(products[j].description);
-                parent.find(".model").text(products[j].model);
-                parent.find(".location").text(products[j].location);
-                parent.find(".purchase_price").text(products[j].purchase_price);
-                parent.find(".sale_price").text(products[j].sale_price);
+
+                parent.find(".total").text(products[j].sale_price);
+                parent.find(".sale_price input").val(products[j].sale_price);
                 parent.find(".quantity input").val(1);
                 parent.find(".quantity input").attr("name");
-                parent.find(".quantity input").attr("name","products["+ products[j].id+"]");
-                parent.find(".quantity input").attr("max",products[j].quantity);
+                parent.find(".quantity input").attr("name", "products[" + products[j].id + "]");
+                parent.find(".quantity input").attr("max", products[j].quantity);
             }
         }
     });
 
-    $(".add-row").click(function () {
 
+    $(".add-row").click(function () {
 
 
         var tr = $(".tr_clone:last-child").clone();
@@ -58,6 +72,7 @@ $(document).ready(function () {
             return $('select', this);
         });
         $('.selectpicker').selectpicker('refresh');
+        $("#products_table").trigger("update");
     });
 
     $("#products_table").on('click', '#remove', function () {
