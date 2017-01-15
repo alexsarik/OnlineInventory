@@ -51,6 +51,7 @@ class saleController extends Controller
                     //actualizar el producto en la tabla products restando a la cantidad actual la cantidad de venta
                     $product = Product::readOne($product_id);
                     $product->quantity = $product->quantity - $quantity;
+
                     $product->update();
 
                 }
