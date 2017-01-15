@@ -39,7 +39,11 @@ class Sale
         $query = "INSERT INTO `sales_orders`(`customer_id`, `user_id`, `date_created`) VALUES ( ?, ?, ?);";
         $parameters = array($this->customer_id,$this->user_id, $this->date_created);
 
-        return $db->run($query, $parameters);
+        if($db->run($query, $parameters)){
+            return $db->lastId();
+        }else{
+            return false;
+        }
     }
 
 

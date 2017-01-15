@@ -20,7 +20,7 @@
             Datos del Cliente<span class="pull-right glyphicon glyphicon-chevron-down"></span></legend>
         <div id="form-customer-info" class="collapse in">
             <div class="col-md-6 section-1">
-                <div class="form-group col-xs-12 col-sm-6 col-md-12">
+                <div class="form-group col-xs-6 col-sm-6 col-md-12 col-lg-12">
 
                     <label for="name">Nombre del Cliente:</label>
                     <select class="form-control selectpicker name" data-live-search="true" id="name" name="customer_id">
@@ -29,24 +29,24 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-12">
+                <div class="form-group col-xs-6 col-sm-6 col-md-12 col-lg-12">
                     <label for="description">Persona de Contacto:</label>
                     <input id="description" class="form-control" type="text"
                            placeholder="Daniel García" disabled>
                 </div>
             </div>
             <div class="col-md-6 section-2">
-                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="address">Dirección:</label>
                     <input id="address" class="form-control" type="text"
                            placeholder="Calle Ejemplo, 2, 1 B" disabled>
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="postal_code">Código Postal:</label>
                     <input id="postal_code" class="form-control" type="number"
                            placeholder="28039" disabled>
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="city">Población:</label>
                     <input id="city" class="form-control" type="text"
                            placeholder="Madrid" disabled>
@@ -77,19 +77,18 @@
                     <tbody>
                     <tr class="tr_clone">
                         <td class="product_serial">
-                            <select data-width="fit" class="selectpicker" data-live-search="true" id="product_serial" name="product_id"
-                                    data-container="body">
+                            <select data-width="fit" class="selectpicker" data-live-search="true" id="product_serial" data-container="body">
                                 <?php foreach ($products as $product): ?>
                                     <option value="<?= $product->id ?>"> <?= $product->serial ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </td>
-                        <td class="product_description"><?= $products[0]->description ?></td>
-                        <td class="product_model"><?= $products[0]->model ?></td>
-                        <td class="product_purchase_price"><?= $products[0]->purchase_price ?></td>
-                        <td class="product_sale_price"><?= $products[0]->sale_price ?></td>
-                        <td class="product_quantity"><input name="quantity" class="form-control" type="number" value="1" step="1"
-                                                            min="1" max="<?= $products[0]->quantity ?>"</td>
+                        <td class="description"><?= $products[0]->description ?></td>
+                        <td class="model"><?= $products[0]->model ?></td>
+                        <td class="purchase_price"><?= $products[0]->purchase_price ?></td>
+                        <td class="sale_price"><?= $products[0]->sale_price ?></td>
+                        <td class="quantity"><input  class="form-control" type="number" step="1" value="1" name="products[<?= $products[0]->id ?>]"
+                                                            min="1" max="<?= $products[0]->quantity ?>"></td>
                         <td>
 
                             <a class="btn btn-danger" href="javascript:void(0);" id="remove">Remove</a></td>
