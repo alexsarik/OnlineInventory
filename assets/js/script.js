@@ -5,35 +5,35 @@
 $(document).ready(function () {
 
 
-    $('#customer_name').on('changed.bs.select', function (e) {
+    $("#form-customer-info").on('changed.bs.select','select', function (e) {
 
-        var customer_name = $('.selectpicker option:selected').val();
+        var section1 = $('.section-1');
+        var section2 = $('.section-2')
+        var selected_value = $(this).val();
         var customers = injection["customers"];
-        console.log(customers);
+        console.log(parent);
         for (var j = 0; j < customers.length; j++) {
-            if (customers[j].name == customer_name) {
-                $("form").find("#customer_address").val(customers[j].address);
-                $("form").find("#customer_description").val(customers[j].description);
-                $("form").find("#customer_postal_code").val(customers[j].postal_code);
-                $("form").find("#customer_city").val(customers[j].city);
+
+            if (customers[j].id == selected_value) {
+
+                section1.find("#description").val(customers[j].description);
+                section2.find("#address").val(customers[j].address);
+                section2.find("#postal_code").val(customers[j].postal_code);
+                section2.find("#city").val(customers[j].city);
             }
         }
     });
 
-    $
+
 
     $("#products_table").on('changed.bs.select', 'select', function (e) {
-        var table = $(this);
 
+        var parent = $(this).parents(".tr_clone");
         var selected_value = $(e.currentTarget).val();
         var products = injection["products"];
         console.log(e.currentTarget);
         for (var j = 0; j < products.length; j++) {
-
             if (products[j].serial == selected_value) {
-
-                var parent = $(this).parents(".tr_clone");
-
                 parent.find(".product_description").text(products[j].description);
                 parent.find(".product_model").text(products[j].model);
                 parent.find(".product_location").text(products[j].location);

@@ -33,6 +33,36 @@ class Sale
         $this->date_created = $date_created;
     }
 
+    public function create(){
+        $db = new DB;
+
+        $query = "INSERT INTO `sales_orders`(`customer_id`, `user_id`, `date_created`) VALUES ( ?, ?, ?);";
+        $parameters = array($this->customer_id,$this->user_id, $this->date_created);
+
+        return $db->run($query, $parameters);
+    }
+
+
+    public static function readOne($id){
+        $db = new DB;
+        $sale = new Sale();
+
+        $query = "SELECT *
+                  FROM `sales_orders`
+                  WHERE `id` = ?
+                  LIMIT 0, 1";
+
+        $parameters = array($id);
+        $db->run($query, $parameters);
+
+        foreach ($db->result()[0] as $property => $value) {
+            $sale->$property = $value;
+        }
+
+        return $sale;
+
+    }
+
     public static function readAll(){
         $db = new DB;
         $sales = [];
@@ -52,7 +82,20 @@ class Sale
             }
         }
         return $sales;
+    }
 
+    function delete()
+    {
+        $db = new DB;
+
+        $query = "DELETE FROM `sales_orders` 
+                  WHERE `id` = ?";
+
+        $parameters = array($this->id);
+
+        $result = $db->run($query, $parameters);
+
+        return $result;
     }
 
 
