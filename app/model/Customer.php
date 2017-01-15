@@ -50,7 +50,7 @@ class Customer
         $db = new DB;
         //Query para INSERT nuevo Producto
 
-        $query = "INSERT INTO `multivendor`.`customers`(`name`, `description`, `contact_num`, `email`, `address`, `city`, `postal_code`)
+        $query = "INSERT INTO `customers`(`name`, `description`, `contact_num`, `email`, `address`, `city`, `postal_code`)
 		          VALUES (?,?,?,?,?,?,?)";
 
         $parameters = array($this->name, $this->description, $this->contact_num, $this->email, $this->address, $this->city, $this->postal_code);
@@ -64,7 +64,7 @@ class Customer
     {
         $db = new DB;
 
-        $query = "UPDATE `multivendor`.`customers` 
+        $query = "UPDATE `customers` 
                   SET `name` = ?, `description`= ?, `contact_num`= ?, `email`= ?, `city`= ?, `address` = ?, `postal_code` = ?
                   WHERE `id` = ?";
 
@@ -79,7 +79,7 @@ class Customer
     {
         $db = new DB;
 
-        $query = "DELETE FROM `multivendor`.`customers` 
+        $query = "DELETE FROM `customers` 
                   WHERE `id` = ?";
 
         $parameters = array($this->id);
