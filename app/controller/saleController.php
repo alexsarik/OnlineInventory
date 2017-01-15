@@ -14,10 +14,13 @@ class saleController extends Controller
     {
         $render_data = array();
         $sale = new Sale();
+
         $customers = Customer::readAll();
         $products = Product::readAll();
         $render_data['customers'] = $customers;
         $render_data['products'] = $products;
+        $injection = ["customers"=>$customers, "products"=>$products];
+        $render_data['injection'] = $injection;
         if ($this->checkAction("create")) {
             var_dump($_POST);
             extract($_POST);
