@@ -15,7 +15,9 @@ class saleController extends Controller
         $render_data = array();
         $sale = new Sale();
         $customers = Customer::readAll();
+        $products = Product::readAll();
         $render_data['customers'] = $customers;
+        $render_data['products'] = $products;
         if ($this->checkAction("create")) {
             var_dump($_POST);
             extract($_POST);
@@ -30,10 +32,10 @@ class saleController extends Controller
 
 
             if ($sale->create()) {
-                $render_data['info'] = "saleo creado.";
+                $render_data['info'] = "Venta creada.";
                 header('Refresh: 1; url="index.php?c=sale&a=list_sales');
             } else {
-                $render_data['error'] = "No se ha podido crear el saleo.";
+                $render_data['error'] = "No se ha podido crear la Venta.";
             }
 
         }

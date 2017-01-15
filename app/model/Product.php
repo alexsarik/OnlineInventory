@@ -58,9 +58,9 @@ class Product
     {
         $db = new DB;
         //Query para INSERT nuevo Producto
-        $query = "INSERT INTO `products`
-		(`serial`, `description`, `model`, `location`, `purchase_price`, `sale_price`, `quantity`)
-		VALUES (?,?,?,?,?,?,?)";
+
+        $query = "INSERT INTO `products`(`serial`, `description`, `model`, `purchase_price`, `sale_price`, `quantity`, `location`) 
+VALUES (?,?,?,?,?,?,?)";
 
         $parameters = array($this->serial, $this->description, $this->model, $this->location, $this->purchase_price, $this->sale_price, $this->quantity);
 
