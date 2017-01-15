@@ -13,25 +13,28 @@ class saleController extends Controller
     public function create()
     {
         $render_data = array();
+
         $sale = new Sale();
+        $customer = new Customer();
+        $product = new Product();
 
         $customers = Customer::readAll();
         $products = Product::readAll();
+
+        $injection = ["customers"=>$customers, "products"=>$products];
+
         $render_data['customers'] = $customers;
         $render_data['products'] = $products;
-        $injection = ["customers"=>$customers, "products"=>$products];
         $render_data['injection'] = $injection;
+
         if ($this->checkAction("create")) {
             var_dump($_POST);
             extract($_POST);
 
 
-            $sale->id = $id;
-            $sale->user_id = $user_id;
-            $sale->user_name = $user_name;
+            $sale->user_id = $this->currentUser()->id;
             $sale->customer_id = $customer_id;
-            $sale->customer_name = $customer_name;
-            $sale->date_created = $date_created;
+            $sale->date_created = date('Y-m-d');
 
 
             if ($sale->create()) {
