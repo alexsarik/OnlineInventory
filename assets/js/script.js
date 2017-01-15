@@ -4,7 +4,7 @@
 
 $(document).ready(function () {
 
-    $('#customer_name').on('changed.bs.select', function (e, clickedIndex, newValue, oldvalue) {
+    $('#customer_name').on('changed.bs.select', function (e) {
 
         var customer_name = $('.selectpicker option:selected').val();
         var customers = injection["customers"];
@@ -19,16 +19,26 @@ $(document).ready(function () {
         }
     });
 
-    $('.tr_clone').on('changed.bs.select', function (e, clickedIndex, newValue, oldvalue) {
-        var product_serial = $('#products_table option:selected').val();
+    $
+
+    $("#products_table").on('changed.bs.select', 'select', function (e) {
+        var table = $(this);
+
+        var selected_value = $(e.currentTarget).val();
         var products = injection["products"];
-        console.log(products);
+        console.log(e.currentTarget);
         for (var j = 0; j < products.length; j++) {
-            if (products[j].name == customer_name) {
-                $("form").find("#customer_address").val(products[j].address);
-                $("form").find("#customer_description").val(products[j].description);
-                $("form").find("#customer_postal_code").val(products[j].postal_code);
-                $("form").find("#customer_city").val(products[j].city);
+
+            if (products[j].serial == selected_value) {
+
+                var parent = $(this).parents(".tr_clone");
+
+                parent.find(".product_description").text(products[j].description);
+                parent.find(".product_model").text(products[j].model);
+                parent.find(".product_location").text(products[j].location);
+                parent.find(".product_purchase_price").text(products[j].purchase_price);
+                parent.find(".product_sale_price").text(products[j].sale_price);
+                parent.find(".product_quantity").text(products[j].quantity);
             }
         }
     });
@@ -39,7 +49,7 @@ $(document).ready(function () {
         $('#products_table tbody tr:last').find('.bootstrap-select').replaceWith(function () {
             return $('select', this);
         });
-        $('.selectpicker').selectpicker();
+        $('.selectpicker').selectpicker('refresh');
 
     });
 
