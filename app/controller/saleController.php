@@ -52,6 +52,7 @@ class saleController extends Controller
                     $product = Product::readOne($product_id);
                     $product->quantity = $product->quantity - $quantity;
 
+
                     $product->update();
 
                 }
