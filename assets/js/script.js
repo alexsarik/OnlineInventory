@@ -4,6 +4,7 @@
 
 $(document).ready(function () {
 
+
     $('#customer_name').on('changed.bs.select', function (e) {
 
         var customer_name = $('.selectpicker option:selected').val();
