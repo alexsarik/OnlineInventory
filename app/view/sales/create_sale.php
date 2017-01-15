@@ -28,17 +28,20 @@
             </div>
             <div class="form-group col-xs-6 col-sm-12 col-md-12">
                 <label for="customer_description">Persona de Contacto:</label>
-                <input id="customer_description" class="form-control" type="text" name="customer_description" placeholder="Daniel García">
+                <input id="customer_description" class="form-control" type="text" name="customer_description"
+                       placeholder="Daniel García">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group col-xs-12 col-sm-12 col-md-12">
                 <label for="customer_address">Dirección:</label>
-                <input id="customer_address" class="form-control" type="text" name="customer_address" placeholder="Calle Ejemplo, 2, 1 B">
+                <input id="customer_address" class="form-control" type="text" name="customer_address"
+                       placeholder="Calle Ejemplo, 2, 1 B">
             </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
                 <label for="customer_postal_code">Código Postal:</label>
-                <input id="customer_postal_code" class="form-control" type="number" name="customer_postal_code" placeholder="28039">
+                <input id="customer_postal_code" class="form-control" type="number" name="customer_postal_code"
+                       placeholder="28039">
             </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
                 <label for="customer_city">Población:</label>
@@ -66,35 +69,22 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 <tr class="tr_clone">
-                    <td>
+                    <td class="product_serial">
                         <select class="selectpicker" data-live-search="true" id="product_serial">
                             <?php foreach ($products as $product): ?>
-                               <option> <?= $product->serial ?></option>
+                                <option> <?= $product->serial ?></option>
                             <?php endforeach; ?>
                         </select>
                     </td>
-                    <td>
-                        <?= $products[0]->description ?>
-                    </td>
-                    <td>
-                        <?= $products[0]->model ?>
-                    </td>
-                    <td>
-                        <?= $products[0]->location ?>
-                    </td>
-                    <td>
-                        <?= $products[0]->purchase_price ?>
-                    </td>
-                    <td>
-                        <?= $products[0]->sale_price ?>
-                    </td>
-                    <td>
-                        <?= $products[0]->quantity ?>
-                    </td>
-                    <td>
-                        <a class="btn btn-danger" href="javascript:void(0);" id="remove">Remove</a>
-                    </td>
+                    <td class="product_description"><?= $products[0]->description ?></td>
+                    <td class="product_model"><?= $products[0]->model ?></td>
+                    <td class="product_location"><?= $products[0]->location ?></td>
+                    <td class="product_purchase_price"><?= $products[0]->purchase_price ?></td>
+                    <td class="product_sale_price"><?= $products[0]->sale_price ?></td>
+                    <td class="product_quantity"><?= $products[0]->quantity ?></td>
+                    <td><a class="btn btn-danger" href="javascript:void(0);" id="remove">Remove</a></td>
                 </tr>
 
                 </tbody>
