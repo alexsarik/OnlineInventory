@@ -96,6 +96,7 @@
                         <a class="btn btn-danger" href="javascript:void(0);" id="remove">Remove</a>
                     </td>
                 </tr>
+
                 </tbody>
             </table>
         </div>
