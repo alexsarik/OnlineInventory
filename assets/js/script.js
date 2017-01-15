@@ -23,6 +23,7 @@ $(document).ready(function () {
     $("#form-customer-info").on('changed.bs.select', 'select', function (e) {
 
         var section1 = $('.section-1');
+
         var section2 = $('.section-2')
         var selected_value = $(this).val();
         var customers = injection["customers"];
