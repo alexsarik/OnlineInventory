@@ -75,48 +75,54 @@
 
                 <br/>
                 <br/>
-                <div style="overflow-x: scroll">
-                    <table class="table table-responsive table-bordered" id="products_table">
-                        <thead>
-                        <tr>
-                            <th>Modelo</th>
-                            <th>Descripción</th>
-                            <th>Precio Venta (€ / ud.)</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Acciones</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="tr_clone">
-                            <td class="model">
-                                <select data-width="fit" class="selectpicker" data-live-search="true" id="model"
-                                        data-container="body">
-                                    <?php foreach ($products as $product): ?>
-                                        <option value="<?= $product->id ?>"> <?= $product->model ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </td>
-                            <td class="description"><?= $products[0]->description ?></td>
-                            <td class="sale_price"><input class="form-control" type="number" min="0" step="any"
-                                                          value="<?= $products[0]->sale_price ?>"></td>
-                            <td class="quantity"><input class="form-control" type="number" step="1" value="1"
-                                                        name="products[<?= $products[0]->id ?>]"
-                                                        min="1" max="<?= $products[0]->quantity ?>"></td>
-                            <td class="total"><?= $products[0]->sale_price * 1 ?></td>
-                            <td><a class="btn btn-danger" href="javascript:void(0);" id="remove">Remove</a></td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="pull-right">
-                    <caption id="sale_subtotal"><strong>Subtotal:</strong></caption>
-                    <caption>249,11 E</caption>
-                    <br>
-                    <caption id="sale_total"><strong>Total:</strong></caption>
-                    <caption> 983,52 E</caption>
-                </div>
+                <div class="row">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="products_table">
+								<thead>
+									<tr>
+										<th>Modelo</th>
+										<th>Descripción</th>
+										<th>Precio Venta (€ / ud.)</th>
+										<th>Cantidad</th>
+										<th>Total</th>
+										<th>Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="tr_clone">
+										<td class="model">
+											<select data-width="fit" class="selectpicker" data-live-search="true" id="model" data-container="body">
+												<?php foreach ($products as $product): ?>
+												<option value="<?= $product->id ?>"> <?= $product->model ?></option>
+												<?php endforeach; ?>
+											</select>
+										</td>
+										<td class="description"><?= $products[0]->description ?></td>
+										<td class="sale_price"><input class="form-control" type="number" min="0" step="any" value="<?= $products[0]->sale_price ?>"></td>
+										<td class="quantity"><input class="form-control" type="number" step="1" value="1" name="products[<?= $products[0]->id ?>]" min="1" max="<?= $products[0]->quantity ?>"></td>
+										<td class="total"><?= $products[0]->sale_price * 1 ?></td>
+										<td><a class="btn btn-danger" href="javascript:void(0);" id="remove">Remove</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-12 col-md-offset-8">
+						<table class="table table-bordered pull-right">
+							<tbody>
+								<tr>
+									<th>Subtotal:</th>
+									<td id="sale_subtotal">249,11 E</td>
+								</tr>
+								<tr>
+									<th>Total:</th>
+									<td id="sale_total">983,52 E</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
                 <button type="submit" class="btn btn-success" name="action" value="create">Crear Venta</button>
             </div>
         </div>
