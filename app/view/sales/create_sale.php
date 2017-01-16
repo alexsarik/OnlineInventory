@@ -108,8 +108,8 @@
 							</table>
 						</div>
 					</div>
-					<div class="col-md-4 col-xs-12 col-md-offset-8">
-						<table class="table table-bordered pull-right">
+					<div class="col-md-4 col-md-offset-8 col-xs-8 col-xs-offset-4">
+						<table class="table table-bordered">
 							<tbody>
 								<tr>
 									<th>Subtotal:</th>
