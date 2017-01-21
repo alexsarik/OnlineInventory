@@ -30,7 +30,6 @@
 			<div id="form-customer-info" class="col-md-12">
 				<div class="col-md-6 section-1">
 					<div class="form-group col-xs-6 col-sm-6 col-md-12 col-lg-12">
-
 						<label for="name">Nombre del Cliente:</label>
 						<select class="form-control selectpicker name" data-live-search="true" id="name"
 								name="customer_id">
