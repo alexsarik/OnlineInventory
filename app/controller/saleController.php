@@ -41,7 +41,6 @@ class saleController extends Controller
             $result = $sale->create();
 
             if ($result !== false) {
-
                 foreach ($products as $product_id => $quantity) {
                     $sale_item->sale_order_id = $result;
                     $sale_item->product_id = $product_id;
