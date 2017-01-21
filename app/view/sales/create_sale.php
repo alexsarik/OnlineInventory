@@ -125,7 +125,7 @@
 							</tr>
 							<tr>
 								<th>Total:</th>
-								<td id="sale_total"><?= round($products[0]->sale_price * 1.21, 2); ?> €</td>
+								<td id="sale_total"><?= round($products[0]->sale_price * 1.21, 2); ?>€</td>
 							</tr>
 							</tbody>
 						</table>
