@@ -9,7 +9,6 @@
 class saleController extends Controller
 {
 
-
     public function create()
     {
         $render_data = array();
@@ -37,8 +36,10 @@ class saleController extends Controller
             $sale->user_id = $this->currentUser()->id;
             $sale->customer_id = $customer_id;
             $sale->date_created = date('Y-m-d');
-
+            
+            $sale->sale_number = "OF-".date('Ymd')."-".$sales_count;
             $result = $sale->create();
+
             if ($result !== false) {
 
                 foreach ($products as $product_id => $quantity) {
@@ -85,19 +86,31 @@ class saleController extends Controller
         $this->list_sales($render_data);
     }
 
-    public function list_sales()
+    public function details()
     {
-        $render_data['title'] = "Ventas";
-        $render_data['sales'] = Sale::readAll();
-        $render_data['customers'] = Customer::readAll();
-        $render_data['products'] = Product::readAll();
+      $render_data = array();
+      $id = $_GET['id'];
+      $sale = Sale::readOne($id);
+		//var_dump($product);
+      $render_data['sale'] = $sale;
+      $render_data['title'] = "Detalles de Venta";
+      $this->render('sales/read_one_sale', $render_data);
+  }
+
+
+  public function list_sales()
+  {
+    $render_data['title'] = "Ventas";
+    $render_data['sales'] = Sale::readAll();
+    $render_data['customers'] = Customer::readAll();
+    $render_data['products'] = Product::readAll();
 
         //var_dump($render_data);
-        if (isset($data)) {
-            $render_data = array_merge($render_data, $data);
+    if (isset($data)) {
+        $render_data = array_merge($render_data, $data);
 
-        }
-        $this->render('sales/list_sales', $render_data);
     }
+    $this->render('sales/list_sales', $render_data);
+}
 
 }

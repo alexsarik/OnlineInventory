@@ -20,8 +20,8 @@
 
     <h2>Listado de Ventas</h2>
     <p>Mostrando <?= count($sales) ?> venta(s).</p>
-    <div class="table-default" style="overflow-x: scroll">
-        <table class="table table-hover table-responsive table-bordered">
+    <div class="table-responsive ">
+        <table class="table table-hover table-bordered">
             <thead>
             <th>Nº Oferta</th>
             <th>Fecha</th>

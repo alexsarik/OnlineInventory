@@ -54,9 +54,9 @@ class Sale
         $sale = new Sale();
 
         $query = "SELECT *
-                  FROM `sales_orders`
-                  WHERE `id` = ?
-                  LIMIT 0, 1";
+        FROM `sales_orders`
+        WHERE `id` = ?
+        LIMIT 0, 1";
 
         $parameters = array($id);
         $db->run($query, $parameters);
@@ -73,10 +73,10 @@ class Sale
         $db = new DB;
         $sales = [];
         $query = "SELECT s.`id`, s.`sale_number`, s.`user_id`, u.name as user_name,s.`customer_id`, c.name as customer_name, `date_created` 
-                    FROM `sales_orders` as s 
-                    JOIN users as u ON u.id = s.`user_id` 
-                    JOIN customers as c ON c.id = s.`customer_id` 
-                    ORDER BY `date_created` DESC";
+        FROM `sales_orders` as s 
+        JOIN users as u ON u.id = s.`user_id` 
+        JOIN customers as c ON c.id = s.`customer_id` 
+        ORDER BY `date_created` DESC";
         if($db->run($query)) {
             $results = $db->result();
             foreach($results as $result){
@@ -90,12 +90,20 @@ class Sale
         return $sales;
     }
 
+    public static function getSalesCountByYear($year){
+        $db = new DB;
+        
+        $query = "SELECT * FROM sales_orders WHERE date_created BETWEEN '".$year."-1-1' AND '".$year."-12-31'";
+        $db->run($query) ;
+        return $db->count();
+    }
+
     function delete()
     {
         $db = new DB;
 
         $query = "DELETE FROM `sales_orders` 
-                  WHERE `id` = ?";
+        WHERE `id` = ?";
 
         $parameters = array($this->id);
 

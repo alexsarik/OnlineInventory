@@ -27,6 +27,10 @@ footer {
 .footer p {
     color: #777;
 }
+
+#products_table .description, #products_table .total{
+    vertical-align: middle;
+}
 /*
 @media only screen and (max-width: 768px) {
     .navbar-header button{
